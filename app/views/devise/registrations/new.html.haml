@@ -1,0 +1,35 @@
+.row{:style => 'margin-top:20px;'}
+  .span8.columns
+    %h2 Create account
+    %p
+      You need an account to start taking notes.
+    %h3
+      Notebook
+    %p
+      is a simple application that will allow you to keep your notes in the cloud.
+      It focuses on one thing only: make it very easy to write notes. It uses markdown
+      to make your typing nicely formatted easy as pie.
+    %p
+      You can easily import your data from your Google Notebook if you want to.
+
+  .span8.columns
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+
+      %fieldset{:style => 'margin-top:10px;'}
+        .clearfix
+          = f.label :email
+          .input
+            = f.email_field :email
+        .clearfix
+          = f.label :password
+          .input
+            = f.password_field :password
+        .clearfix
+          = f.label :password_confirmation
+          .input
+            = f.password_field :password_confirmation
+        .actions
+          = f.submit "Create account", :class => 'btn large primary'
+
+    = render :partial => "devise/shared/links"

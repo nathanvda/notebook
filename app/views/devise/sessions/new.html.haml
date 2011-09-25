@@ -1,0 +1,44 @@
+
+.row{:style => 'margin-top:20px;'}
+  .span8.columns
+    %h2 Sign In
+    %p
+      You need an account to start taking notes.
+    %p
+      Don't have an account?
+      = link_to "Create one", new_registration_path(resource_name)
+    %h3
+      Notebook
+    %p
+      is a simple application that will allow you to keep your notes in the cloud.
+      It focuses on one thing only: make it very easy to write notes. It uses markdown
+      to make your typing nicely formatted easy as pie.
+    %p
+      You can easily import your data from your Google Notebook if you want to.
+  .span8.columns
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      %fieldset{:style => 'margin-top:10px;'}
+        .clearfix
+          = f.label :email
+          .input
+            = f.email_field :email
+
+        .clearfix
+          = f.label :password
+          .input
+            = f.password_field :password
+
+        - if devise_mapping.rememberable?
+          .clearfix
+            .input
+              %ul.inputs-list
+                %li
+                  %label
+                    = f.check_box :remember_me
+                    %span remember me
+
+        .actions
+          = f.submit "Sign in", :class => 'btn large primary'
+          or
+          = link_to "did you forget your password?", new_password_path(resource_name)
+

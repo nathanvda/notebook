@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Notebook
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+%body{:style => 'padding-top:40px;'}
+  .topbar
+    .topbar-inner
+      .container
+        %h3
+          =link_to "Notebook", root_url
+        %ul.nav
+          %li
+            = link_to "Home", root_url
+          %li
+            = link_to "About", root_url
+
+
+  .container
+    = yield
+
+
