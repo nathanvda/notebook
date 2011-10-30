@@ -14,10 +14,14 @@
     - @books.each do |book|
       %div{:id => "#{book.slug}", :class => first && 'active' }
         - first = false
-        .note-content
-          - book.notes.each do |note|
-            .note
-              = on_the_spot_edit note, :content, :type => :textarea
-        .actions
-          =link_to 'Add a new note', '#'
+        .book-container
+          .note-actions
+            =link_to 'delete notebook', book_path(book), :method => :delete, :confirm => "Are you sure you want to delete #{book.title}?", :remote => true
+            =link_to 'new note', '#', :class => 'add-note', :'data-book' => book.id
+          .note-content
+            - book.notes.each do |note|
+              .note
+                = on_the_spot_edit note, :content, :type => :textarea
+
+  =link_to 'Add a new book', new_book_path
 
