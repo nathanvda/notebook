@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
   # GET /books
   # GET /books.json
+
+  can_edit_on_the_spot
+
   def index
     @books = Book.all
 

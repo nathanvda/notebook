@@ -1,23 +1,23 @@
-%h1 Listing books
+%section#books
+  .page-header
+    %h1 Your notebooks
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th User
-    %th
-    %th
-    %th
+  %ul.tabs
+    - first = true
+    - @books.each do |book|
+      %li{:class => first && 'active' }
+        = link_to book.title, "##{book.slug}"
+        - first = false
 
-  - @books.each do |book|
-    %tr
-      %td= book.title
-      %td= book.description
-      %td= book.user_id
-      %td= link_to 'Show', book
-      %td= link_to 'Edit', edit_book_path(book)
-      %td= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete
+  .tab-content
+    - first = true
+    - @books.each do |book|
+      %div{:id => "#{book.slug}", :class => first && 'active' }
+        - first = false
+        .note-content
+          - book.notes.each do |note|
+            .note
+              = on_the_spot_edit note, :content, :type => :textarea
+        .actions
+          =link_to 'Add a new note', '#'
 
-%br
-
-= link_to 'New Book', new_book_path

@@ -16,8 +16,15 @@
           %li
             = link_to "Home", root_url
           %li
-            = link_to "About", root_url
-
+            = link_to "About", about_url
+        %ul.nav.secondary-nav
+          %li{:class => 'dropdown', :'data-dropdown' => 'dropdown'}
+            = link_to "Tools", '#', :class => 'dropdown-toggle'
+            %ul.dropdown-menu
+              %li
+                = link_to "Import Google notebook", '#'
+              %li
+                = link_to "Do something else", '#'
 
   .container
     = yield

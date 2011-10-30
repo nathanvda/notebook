@@ -1,13 +1,17 @@
 Notebook::Application.routes.draw do
 
   resources :notes
-  resources :books
+  resources :books do
+    collection do
+      put :update_attribute_on_the_spot
+    end
+  end
 
   devise_for :users
 
   get "home/index"
 
-  get "home/about"
+  get "home/about", :as => :about
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

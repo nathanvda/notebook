@@ -3,6 +3,26 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require bootstrap-1.2.0
+ *= require bootstrap.min
  *= require_tree . 
 */
+
+
+.note {
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    padding: 5px;
+}
+
+.note form textarea {
+    width:80%;
+}
+
+.note button {
+    padding:  2px;
+    margin: 2px;
+    border:  2px outset buttonface;
+}

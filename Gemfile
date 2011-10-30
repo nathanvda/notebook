@@ -16,11 +16,17 @@ group :assets do
   gem 'sass-rails', "  ~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
-
 end
 
 gem 'jquery-rails'
 gem 'sprockets'
+
+# use master version of simple-form for twitter-bootstrap integration
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+
+gem 'on_the_spot'
+
+gem "vigilante", :path => '../vigilante'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,7 +42,7 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem "settingslogic"
-gem 'twitter-bootstrap-rails', :path => '../twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails', :path => '../twitter-bootstrap-rails'
 
 # tags
 gem 'acts-as-taggable-on', '~>2.1.0'
