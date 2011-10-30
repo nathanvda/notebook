@@ -1,6 +1,8 @@
 = simple_form_for @book, :wrapper => 'inline' do |f|
-  = f.input :title
-  = f.input :description
+  %fieldset
+    %legend #{f.object.new_record? ? 'Create a new notebook' : 'Edit a notebook'}
+    = f.input :title
+    = f.input :description
 
-  .actions
-    = f.button :submit, :disable_with => 'Please wait ...'
+    .actions
+      = f.button :submit, :disable_with => 'Please wait ...'
