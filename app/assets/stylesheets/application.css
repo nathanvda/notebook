@@ -44,3 +44,11 @@ ul.tabs {
     margin: 2px;
     border:  2px outset buttonface;
 }
+
+.note pre {
+    margin-bottom: 0px;
+}
+
+.delete-note {
+    font-size: 80%;
+}

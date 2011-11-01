@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  has_many :notes
+  has_many :notes, :order => 'created_at desc'
   belongs_to :user
 
   after_create :add_first_note

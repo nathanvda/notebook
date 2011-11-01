@@ -8,7 +8,8 @@ Notebook::Application.routes.draw do
   end
 
   put 'notes/update'
-  get 'notes/show', :as => :note
+  get 'notes/content', :as => :note_content
+  resources :notes, :only => [:destroy]
 
   devise_for :users
 

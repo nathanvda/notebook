@@ -1,11 +1,11 @@
 class NotesController < ApplicationController
 
   # retrieve note content before editing
-  def show
+  def content
     klass, field, id = params[:id].split('__')
     @note = Note.find(id)
 
-    render :text => CGI::escapeHTML(@note.content)
+    render :text => @note.content
   end
 
 
@@ -13,7 +13,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @book = Book.find(params[:book_id])
-    @note = Note.new(:book_id => @book.id)
+    @note = Note.new(:book_id => @book.id, :content => '')
 
     respond_to do |format|
       if @note.save
@@ -42,20 +42,6 @@ class NotesController < ApplicationController
     end
   end
 
-  def update_inline
-    klass, field, id = params[:id].split('__')
-    @note = klass.camelize.constantize.find(id)
-    if object.update_attributes(field => params[:value])
-      if select_data.nil?
-        render :text => CGI::escapeHTML(object.send(field).to_s)
-      else
-        parsed_data = JSON.parse(select_data.gsub("'", '"'))
-        render :text => parsed_data[object.send(field).to_s]
-      end
-    else
-      render :text => object.errors.full_messages.join("\n"), :status => 422
-    end
-  end
 
   # DELETE /notes/1
   # DELETE /notes/1.json
@@ -66,6 +52,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to notes_url }
       format.json { head :ok }
+      format.js
     end
   end
 end

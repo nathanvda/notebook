@@ -1,2 +1,0 @@
-$("#<%= @book.slug %> .note-content").prepend('<div class=\'note\'> <%= on_the_spot_edit @note, :content, :type => :textarea, :url => {:controller => :books, :action => :update_attribute_on_the_spot } %> </div>').fadeIn('slow');
-$('#<%= @book.slug %> .note-content .on_the_spot_editing').each(initializeOnTheSpot);

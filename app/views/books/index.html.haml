@@ -20,9 +20,12 @@
             = link_to 'new note', book_notes_path(book), :method => :post, :remote => true
           .note-content
             - book.notes.each do |note|
-              .note
-                -#= on_the_spot_edit note, :content, :type => :textarea, :onblur => 'submit', :url => {:controller => :notes, :action => :update }
-                = editable_note(note)
+              -#%div{:id => "note-#{note.id}", :class => 'note'}
+              -#  -#= on_the_spot_edit note, :content, :type => :textarea, :onblur => 'submit', :url => {:controller => :notes, :action => :update }
+              -#  = editable_note(note)
+              -#  .delete-note
+              -#    = link_to 'delete note', note_path(note), :method => :delete, :confirm => 'Are you sure you want to delete this note?', :remote => true
+              = render 'notes/note', :note => note
 
   =link_to 'Add a new book', new_book_path
 
