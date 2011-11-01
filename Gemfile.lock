@@ -7,10 +7,10 @@ GIT
       activemodel (~> 3.0)
 
 PATH
-  remote: ../vigilante
+  remote: ../on_the_spot
   specs:
-    vigilante (1.0.0)
-      rails (>= 3.0.3)
+    on_the_spot (0.0.17)
+      json_pure (>= 1.4.6)
 
 GEM
   remote: http://rubygems.org/
@@ -83,8 +83,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
-    on_the_spot (0.0.16)
-      json_pure (>= 1.4.6)
     orm_adapter (0.0.5)
     polyglot (0.3.2)
     rack (1.3.2)
@@ -161,7 +159,7 @@ DEPENDENCIES
   haml (>= 3.0.0)
   haml-rails
   jquery-rails
-  on_the_spot
+  on_the_spot!
   rails (= 3.1.0)
   rspec-rails (>= 2.0.1)
   sass-rails (~> 3.1.0.rc)
@@ -171,4 +169,3 @@ DEPENDENCIES
   sqlite3
   therubyracer
   uglifier
-  vigilante!

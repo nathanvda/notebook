@@ -1,4 +1,4 @@
-$("a[href='#<%= @book.slug %>']").parent().hide();
-$("#<%= @book.slug %>").hide();
+$("a[href='#<%= @book.slug %>']").parent().remove();
+$("#<%= @book.slug %>").remove();
 $('.tabs li').first().addClass('active');
 $('.tab-content div').first().addClass('active');

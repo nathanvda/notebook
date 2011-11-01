@@ -1,71 +1,59 @@
 class NotesController < ApplicationController
-  # GET /notes
-  # GET /notes.json
-  def index
-    @notes = Note.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notes }
-    end
-  end
-
-  # GET /notes/1
-  # GET /notes/1.json
+  # retrieve note content before editing
   def show
-    @note = Note.find(params[:id])
+    klass, field, id = params[:id].split('__')
+    @note = Note.find(id)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @note }
-    end
+    render :text => CGI::escapeHTML(@note.content)
   end
 
-  # GET /notes/new
-  # GET /notes/new.json
-  def new
-    @note = Note.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @note }
-    end
-  end
-
-  # GET /notes/1/edit
-  def edit
-    @note = Note.find(params[:id])
-  end
 
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(params[:note])
+    @book = Book.find(params[:book_id])
+    @note = Note.new(:book_id => @book.id)
 
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
-  # PUT /notes/1
-  # PUT /notes/1.json
+  # PUT /notes?id= ...
+  # called from on_the_spot
+  # to make sure we can return a correctly formatted view
   def update
-    @note = Note.find(params[:id])
+    klass, field, id = params[:id].split('__')
+    @note = Note.find(id)
 
-    respond_to do |format|
-      if @note.update_attributes(params[:note])
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
-        format.json { head :ok }
+    if @note.update_attributes(field => params[:value])
+      render :text => "<pre>#{CGI::escapeHTML(@note.send(field))}</pre>", :status => 200
+    else
+      render :text => @note.errors.full_messages.join("\n"), :status => 422
+    end
+  end
+
+  def update_inline
+    klass, field, id = params[:id].split('__')
+    @note = klass.camelize.constantize.find(id)
+    if object.update_attributes(field => params[:value])
+      if select_data.nil?
+        render :text => CGI::escapeHTML(object.send(field).to_s)
       else
-        format.html { render action: "edit" }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        parsed_data = JSON.parse(select_data.gsub("'", '"'))
+        render :text => parsed_data[object.send(field).to_s]
       end
+    else
+      render :text => object.errors.full_messages.join("\n"), :status => 422
     end
   end
 
