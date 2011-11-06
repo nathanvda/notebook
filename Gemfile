@@ -27,7 +27,7 @@ gem 'capistrano-ext'
 # use master version of simple-form for twitter-bootstrap integration
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
-gem 'on_the_spot', :path => '../on_the_spot'
+gem 'on_the_spot' #, :path => '../on_the_spot'
 
 #gem "vigilante", :path => '../vigilante'
 
