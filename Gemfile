@@ -21,6 +21,9 @@ end
 gem 'jquery-rails'
 gem 'sprockets'
 
+gem 'capistrano'
+gem 'capistrano-ext'
+
 # use master version of simple-form for twitter-bootstrap integration
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
