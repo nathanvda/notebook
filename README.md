@@ -6,23 +6,19 @@ There are currently some alternatives available, but none had that same simplici
 
 # To Do
 
-* use a good editor solution
-* allow to delete notes (use a small x)
+* use vigilante for safety
+* edit/manage own profile
+* manage trash
+*
+
 * allow to reorder notes
-* notes are by default ordered descending by date
 * import google notebook
 * markdown
-* show a small data + allow option to add tags to a note or book
+* show a small date + allow option to add tags to a note or book
 * search on content or tags
 * do a better layout ...
 * provide a trashcan ... (restore/delete for real)
 
 * dashboard: show some stats?
 
-
-# Planned features
-
-* start with a simple frontend
-* progress to a single page solution, using backbone-rails or sproutcore?
-* use bootstrap for styling?
 
