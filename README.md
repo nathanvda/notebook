@@ -9,7 +9,7 @@ There are currently some alternatives available, but none had that same simplici
 * use vigilante for safety
 * edit/manage own profile
 * manage trash
-*
+* switch to using ActiveRecord session store (see initializers/session-store for more info)
 
 * allow to reorder notes
 * import google notebook
