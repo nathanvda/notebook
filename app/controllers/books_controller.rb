@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @books }
+      format.json { render :json => @books }
     end
   end
 
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @book }
+      format.json { render :json => @book }
     end
   end
 
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @book }
+      format.json { render :json => @book }
     end
   end
 
@@ -49,11 +49,11 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         #format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.html { redirect_to books_url, :flash => {success: 'Book was successfully created.' } }
-        format.json { render json: @book, status: :created, location: @book }
+        format.html { redirect_to books_url, :flash => {:success => 'Book was successfully created.' } }
+        format.json { render :json => @book, :status => :created, :location => @book }
       else
-        format.html { render action: "new" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @book.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,11 +66,11 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update_attributes(params[:book])
         #format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.html { redirect_to books_url, notice: 'Book was successfully updated.' }
+        format.html { redirect_to books_url, :notice => 'Book was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @book.errors, :status => :unprocessable_entity }
       end
     end
   end
