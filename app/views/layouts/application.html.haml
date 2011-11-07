@@ -36,5 +36,17 @@
       %div{:class => [name," alert-message"], :id => "flash_#{name}"}
         = msg
     = yield
+  %footer.footer
+    .container
+      %p
+        Jottinx is a
+        = link_to '@dixis', 'http://twitter.com/dixis'
+        realisation.
+        %br
+        = "&copy; 2011".html_safe
+        |
+        = app_version
+
+
 
 
