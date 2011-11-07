@@ -2,10 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3', :group => [:development, :test]
 gem 'pg', :group => [:production]
 
 gem 'therubyracer'
@@ -19,11 +15,13 @@ group :assets do
   gem 'uglifier'
 end
 
+
 gem 'jquery-rails'
 gem 'sprockets'
 
 gem 'capistrano'
 gem 'capistrano-ext'
+
 
 # use master version of simple-form for twitter-bootstrap integration
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
@@ -33,20 +31,20 @@ gem 'on_the_spot' #, :path => '../on_the_spot'
 #gem "vigilante", :path => '../vigilante'
 
 # Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'thin'
 
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+
+group :development, :test do
+  gem "rspec-rails", ">= 2.0.1"
+  gem 'sqlite3'
+  gem 'simple_cov', :require => false
+end
+
+
 gem "settingslogic"
-#gem 'twitter-bootstrap-rails', :path => '../twitter-bootstrap-rails'
 
 # tags
 gem 'acts-as-taggable-on', '~>2.1.0'
