@@ -41,6 +41,7 @@ group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'sqlite3'
   gem 'simple_cov', :require => false
+  gem 'factory_girl_rails'
 end
 
 
