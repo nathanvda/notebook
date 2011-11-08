@@ -17,12 +17,12 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, :notice => 'Note was successfully created.' }
-        format.json { render :json => @note, :status => :created, :location => @note }
+        #format.html { redirect_to @note, :notice => 'Note was successfully created.' }
+        #format.json { render :json => @note, :status => :created, :location => @note }
         format.js
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @note.errors, :status => :unprocessable_entity }
+        #format.html { render :action => "new" }
+        #format.json { render :json => @note.errors, :status => :unprocessable_entity }
         format.js
       end
     end
@@ -33,7 +33,7 @@ class NotesController < ApplicationController
   # to make sure we can return a correctly formatted view
   def update
     klass, field, id = params[:id].split('__')
-    @note = Note.find(id)
+    @note = current_user.notes.find(id)
 
     if @note.update_attributes(field => params[:value])
       render :text => "<pre>#{CGI::escapeHTML(@note.send(field))}</pre>", :status => 200
@@ -46,12 +46,13 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    @note = Note.find(params[:id])
+    #@note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
     @note.destroy
 
     respond_to do |format|
-      format.html { redirect_to notes_url }
-      format.json { head :ok }
+      #format.html { redirect_to notes_url }
+      #format.json { head :ok }
       format.js
     end
   end

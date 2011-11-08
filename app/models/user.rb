@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :books
+  has_many :notes, :through => :books
 
   after_create :add_first_book
 
