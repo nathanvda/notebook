@@ -16,7 +16,6 @@ describe "books/edit.html.haml" do
     assert_select "form", :action => books_path(@book), :method => "post" do
       assert_select "input#book_title", :name => "book[title]"
       assert_select "input#book_description", :name => "book[description]"
-      assert_select "input#book_user_id", :name => "book[user_id]"
     end
   end
 end

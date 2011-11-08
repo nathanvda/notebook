@@ -40,7 +40,8 @@ gem "haml-rails"
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'sqlite3'
-  gem 'simple_cov', :require => false
+  gem 'simple_cov'
+  gem 'simple_cov-html'
   gem 'factory_girl_rails'
 end
 

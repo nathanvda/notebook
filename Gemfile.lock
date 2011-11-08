@@ -151,6 +151,8 @@ GEM
       sass (>= 3.1.4)
     settingslogic (2.0.6)
     simple_cov (0.2.0)
+    simple_cov-html (0.2.0)
+      simple_cov (>= 0.2.0)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -194,6 +196,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.0.rc)
   settingslogic
   simple_cov
+  simple_cov-html
   simple_form!
   sprockets
   sqlite3
