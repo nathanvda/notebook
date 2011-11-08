@@ -20,6 +20,14 @@ require 'spec_helper'
 
 describe BooksController do
 
+  include Devise::TestHelpers
+
+  before (:each) do
+    @user = Factory.create(:user)
+    sign_in @user
+  end
+
+
   # This should return the minimal set of attributes required to create a valid
   # Book. As you add validations to Book, be sure to
   # update the return value of this method accordingly.
@@ -29,17 +37,42 @@ describe BooksController do
 
   describe "GET index" do
     it "assigns all books as @books" do
-      book = Book.create! valid_attributes
       get :index
-      assigns(:books).should eq([book])
+      assigns(:books).collect(&:id).should =~ @user.books.collect(&:id)
+    end
+    context "books from other users" do
+      before do
+        @book = Factory(:book)
+      end
+      it "belongs to another user" do
+        @book.user.id.should_not be == @user.id
+      end
+      context "when visting index" do
+        before(:each) do
+          get :index
+        end
+        it "shows the book from the logged on user" do
+          assigns(:books).collect(&:id).should =~ @user.books.collect(&:id)
+        end
+        it "does not show books from other users" do
+          assigns(:books).collect(&:id).should_not include(@book.id)
+        end
+      end
     end
   end
 
   describe "GET show" do
     it "assigns the requested book as @book" do
-      book = Book.create! valid_attributes
+      book = Factory(:book, :user => @user)
       get :show, :id => book.id.to_s
       assigns(:book).should eq(book)
+    end
+    context "book from another user" do
+      it "returns an error" do
+        book = Factory(:book, :user => @user)
+        get :show, :id => book.id.to_s
+        assigns(:book).should eq(book)
+      end
     end
   end
 
@@ -74,7 +107,7 @@ describe BooksController do
 
       it "redirects to the created book" do
         post :create, :book => valid_attributes
-        response.should redirect_to(Book.last)
+        response.should redirect_to(books_path)
       end
     end
 
@@ -116,7 +149,7 @@ describe BooksController do
       it "redirects to the book" do
         book = Book.create! valid_attributes
         put :update, :id => book.id, :book => valid_attributes
-        response.should redirect_to(book)
+        response.should redirect_to(books_path)
       end
     end
 
