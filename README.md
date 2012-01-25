@@ -1,8 +1,9 @@
 # Notebook
 
 This is a small demo application, to mimic the functionality of Google Notebook.
-I currently still use that, while it is no longer supported by Google.
 There are currently some alternatives available, but none had that same simplicity from the google one that I like.
+
+You can see it in action: [jottinx](http://jottinx.com)
 
 # To Do
 
